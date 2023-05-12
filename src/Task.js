@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 
 // function that returns tasks and checkboxes
-let Task = (props) => {
+let Task = ({ name, priority, deadline }) => {
   
   const [status, setStatus] = useState("not started");
 
@@ -12,22 +12,43 @@ let Task = (props) => {
   }
 
   const Priority = () => {
-    if (props.priority !== "") {
+    if (priority !== "") {
       return (
-        <div className="priority" >Priority: {props.priority}</div>
+        <div className="priority" >Priority: {priority}</div>
       )
     }
   }
 
+  const Date = () => {
+      if (deadline.day!=="" && deadline.month!=="" && deadline.year!=="" ) {
+        return (
+          <span>{deadline.day}/{deadline.month}/{deadline.year}</span>
+        )
+      }
+  }
+
+  const Time = () => {
+    if (deadline.hour!=="" && deadline.minute !=="") {
+      return (
+        <span>{deadline.hour}:{deadline.minute}</span>
+      )
+    }
+  }
+
+
+  
+
   // displays the task if it isnt completed
   if (status !== "complete") {
     return (
-      <div className={'task p' + props.priority}>
+      <div className={'task p' + priority}>
         <div className="task-name">
           <input type="checkbox" onChange={completeTask}></input>
-          <span>{props.name}</span>
+          <span>{name}</span>
         </div>
         <Priority />
+        <Date />
+        <Time />
       </div> 
     )
   }

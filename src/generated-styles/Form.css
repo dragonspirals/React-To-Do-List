@@ -1,0 +1,54 @@
+/* -------------------------------------------------------------------------- */
+/*                                  variables                                 */
+/* -------------------------------------------------------------------------- */
+/* --------------------------------- colors --------------------------------- */
+/* ---------------------------------- fonts --------------------------------- */
+/* --------------------------------- mixins --------------------------------- */
+/* ---------------------------------- Form ---------------------------------- */
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+select {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+/* ------------------------------------ - ----------------------------------- */
+.Form {
+  background-color: #d6e4f8;
+  padding: 2%;
+  display: flex;
+}
+
+.form-item {
+  margin: 1%;
+}
+
+.form-btn {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2px;
+  cursor: pointer;
+  background-color: #636e9b;
+  color: white;
+  transition: 1s;
+}
+.form-btn:hover {
+  background-color: #3887d6;
+}
+
+.name-input {
+  border: none;
+}/*# sourceMappingURL=Form.css.map */

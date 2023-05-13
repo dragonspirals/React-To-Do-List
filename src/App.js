@@ -1,5 +1,5 @@
 
-import './App.css';
+import './written-styles/App.css';
 import React from 'react'
 import AllTasks from "./AllTasks.js"
 

@@ -2,16 +2,7 @@
   text-align: left;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -24,29 +15,24 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .All-tasks {
   background-color: antiquewhite;
-  width:60vh;
+  width:60vw;
   margin:auto;
   padding:2%;
 }
 
+.Task-list {
+  display:flex;
+}
 
 
-/* Tasks  */
+
+
+
+
+/* ------------------------------ Display Tasks ----------------------------- */
 
 .task {
   display:flex;
@@ -67,4 +53,7 @@
 .p2 {
   background-color: lightsalmon;
 }
+
+
+
 

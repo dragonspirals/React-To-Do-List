@@ -25,15 +25,50 @@ input {
 /* ------------------------------------ - ----------------------------------- */
 
 .Form {
+  width: 100%;
   background-color: $bg-color;
-  padding:2%;
   display:flex;
+  flex-wrap:wrap;
 }
   
-.form-item {
-  margin:1%;
+.form-item-div {
+  margin:2%;
+  padding:1%;
+  align-self: center;
+
+
+  &.form-label {
+    width:100%;
+  }
+
+  &.form-name {
+    width:40%;
+    min-width: 100px;
+  }
+
+  &.form-priority {
+    width:10%;
+    min-width: fit-content;
+  }
+
+  &.deadline-btn {
+    width:5%;
+    min-width: fit-content;
+  }
+
+  
+
+
 }
 
+
+
+
+/* ------------------------------- form items ------------------------------- */
+
+.form-item {
+  width: 100%;
+}
 
 .form-btn {
   @include form-element;
@@ -48,5 +83,52 @@ input {
 }
 
 .name-input {
-  border:none;
+  @include form-element;
+}
+
+
+
+/* -------------------------------- calendar -------------------------------- */
+.form-calendar {
+  background-color: aliceblue;
+  position:fixed;
+  right: 0;
+  padding:2%
+}
+
+
+/* ------------------------------ calendar app ------------------------------ */
+
+.Calendar-app {
+  padding:2%;
+  border-style: double;
+  border-width: 10px;
+  border-color: $primary-color;
+}
+
+
+.Calendar-table {
+  table-layout: fixed;
+}
+
+.table-headings {
+  text-align: center;
+  background-color: $primary-color;
+  color:white;
+  padding:5px;
+}
+
+.table-box {
+  transition:0.5s;
+  cursor:pointer;
+  border-style:solid;
+  border-width: 2px;
+  border-color: $primary-color;
+  width:14%;
+  text-align: center;
+
+  &:hover {
+    background-color: $primary-color;
+    color:white;
+  }
 }

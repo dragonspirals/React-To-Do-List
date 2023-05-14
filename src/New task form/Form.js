@@ -1,6 +1,7 @@
-import { useState } from "react";
-import SetDate from "./SetDate";
-import './generated-styles/Form.css';
+import React, { useState } from "react";
+import '../generated-styles/Form.css';
+import Calendar from "./Calendar";
+import CalendarApp from "./CalendarApp";
 
 /* -------------------------------------------------------------------------- */
 /*                            form to add new tasks                           */
@@ -14,7 +15,9 @@ export default function TaskForm( { submitForm } ) {
         name:"",
         completion: "incomplete",
         priority:"",
-        deadline:"" }
+        hasDeadline: false,
+        deadline: new Date()
+        }
 
     
     const [newTask, setNewTask] = useState(blankTask);
@@ -55,7 +58,6 @@ export default function TaskForm( { submitForm } ) {
 
     /* -------------------------------- deadline -------------------------------- */
     function setDeadline(deadline) {
-
         // this function will be passed down to the set Date componenet
         setNewTask(current => {
             return {...current, deadline:deadline}})
@@ -64,7 +66,7 @@ export default function TaskForm( { submitForm } ) {
     }
     
     
-
+   
 
 
     /* ----------------------------- Form components ---------------------------- */
@@ -73,8 +75,8 @@ export default function TaskForm( { submitForm } ) {
     // priority 
     const Priority = () => {
         return (
-            <div className = "form-item priority-input">
-                <select value={newTask.priority} onChange={(e)=> setPriority(e.target.value)}>
+            <div className = "form-item-div form-priority">
+                <select className="form-item" value={newTask.priority} onChange={(e)=> setPriority(e.target.value)}>
                     <option value="">Priority</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
@@ -86,25 +88,63 @@ export default function TaskForm( { submitForm } ) {
 
 
 
+    const DeadlineBtn = () => {
+
+        if (newTask.hasDeadline===true) {
+            var buttonText = "Remove Deadline"
+        } else {
+            buttonText = "Add Deadline"
+        }
+
+        const toggleShow = () => {
+
+            // hide => show 
+            if (newTask.hasDeadline === false) {
+                setNewTask(current => {
+                    return {...current, hasDeadline:true}
+                })
+            } 
+            
+            // show => hide 
+            else {
+                setNewTask(current => {
+                    return {...current, hasDeadline:false}
+                })
+            }
+        }
+
+        
+        return (
+            <div className="form-item-div deadline-btn">
+                <button className="form-btn" onClick={toggleShow}>{buttonText}</button>
+            </div>
+        )
+    }
+
+
 
 
     return (
         <form className="Form" onSubmit={handleSubmit}>
-            <div className="form-item"><label HtmlFor="New-task">Add New Task </label></div>
+            <div className="form-item-div form-label">
+                <label className="form-item" HtmlFor="New-task">Add New Task </label>
+            </div>
 
 
 
             {/* set task name  */}
-            <div className="name-input form-item">
-                <input type="text" value={newTask.name} onChange={(e)=> setTaskName(e.target.value)}/>
+            <div className="form-name form-item-div">
+                <input className="form-item" type="text" value={newTask.name} onChange={(e)=> setTaskName(e.target.value)}/>
             </div>
 
 
             <Priority />
-            <SetDate setFunction={setDeadline}/>
+            <DeadlineBtn />
+            <Calendar show={newTask.hasDeadline} setFunction={setDeadline} />
+            {/* <CalendarApp /> */}
 
-            <div className="form-item">
-                <input className="form-btn" type="submit" />
+            <div className="form-item-div form-submit">
+                <input className="form-btn form-item" type="submit" />
             </div>
 
         </form>

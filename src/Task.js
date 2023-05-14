@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 
 // function that returns tasks and checkboxes
-let Task = ({ name, priority, deadline }) => {
+let Task = ({ name, priority, deadline, hasDeadline }) => {
   
   const [status, setStatus] = useState("not started");
 
@@ -20,20 +20,26 @@ let Task = ({ name, priority, deadline }) => {
   }
 
   const Date = () => {
-      if (deadline.day!=="" && deadline.month!=="" && deadline.year!=="" ) {
-        return (
-          <span>{deadline.day}/{deadline.month}/{deadline.year}</span>
+      // if (deadline.day!=="" && deadline.month!=="" && deadline.year!=="" ) {
+      //   return (
+      //     <span>{deadline.day}/{deadline.month}/{deadline.year}</span>
+      //   )
+      // }
+
+      if (hasDeadline === true) {
+        return(
+          <span>{deadline.getDate()}/{deadline.getMonth()}/{deadline.getFullYear()}</span>
         )
       }
   }
 
-  const Time = () => {
-    if (deadline.hour!=="" && deadline.minute !=="") {
-      return (
-        <span>{deadline.hour}:{deadline.minute}</span>
-      )
-    }
-  }
+  // const Time = () => {
+  //   if (deadline.hour!=="" && deadline.minute !=="") {
+  //     return (
+  //       <span>{deadline.hour}:{deadline.minute}</span>
+  //     )
+  //   }
+  // }
 
 
   
@@ -48,7 +54,7 @@ let Task = ({ name, priority, deadline }) => {
         </div>
         <Priority />
         <Date />
-        <Time />
+        {/* <Time /> */}
       </div> 
     )
   }

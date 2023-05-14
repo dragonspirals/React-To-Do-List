@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Task from "./Task"
-import Form from "./Form";
+import Form from "./New task form/Form";
 import './generated-styles/Display-tasks.css'
 
 
@@ -21,7 +21,7 @@ export default function AllTasks() {
         return (
             <div className="Display-tasks" >
                 {taskList.map(item => (
-                <Task name={item.name} priority={item.priority} deadline={item.deadline}/>
+                <Task name={item.name} priority={item.priority} deadline={item.deadline} hasDeadline={item.hasDeadline}/>
                 ))}
             </div>
         )

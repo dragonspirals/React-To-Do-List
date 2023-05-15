@@ -1,56 +1,40 @@
 import React, { useState } from 'react';
+import CompleteTask from './CompleteTask';
 
 
 
 // function that returns tasks and checkboxes
-let Task = ({ name, priority, deadline, hasDeadline }) => {
+let Task = ({ task, completeFn }) => {
   
-  const [status, setStatus] = useState("not started");
-
-  let completeTask = () => {
-    setStatus("complete");
-  }
 
   const Priority = () => {
-    if (priority !== "") {
+    if (task.priority !== "") {
       return (
-        <div className="priority" >Priority: {priority}</div>
+        <div className="priority" >Priority: {task.priority}</div>
       )
     }
   }
 
   const Date = () => {
-      // if (deadline.day!=="" && deadline.month!=="" && deadline.year!=="" ) {
-      //   return (
-      //     <span>{deadline.day}/{deadline.month}/{deadline.year}</span>
-      //   )
-      // }
 
-      if (hasDeadline === true) {
+      if (task.hasDeadline === true) {
         return(
-          <span>{deadline.getDate()}/{deadline.getMonth()}/{deadline.getFullYear()}</span>
+          <span>{task.deadline.getDate()}/{task.deadline.getMonth()}/{task.deadline.getFullYear()}</span>
         )
       }
   }
 
-  // const Time = () => {
-  //   if (deadline.hour!=="" && deadline.minute !=="") {
-  //     return (
-  //       <span>{deadline.hour}:{deadline.minute}</span>
-  //     )
-  //   }
-  // }
 
 
   
 
   // displays the task if it isnt completed
-  if (status !== "complete") {
+  if (task.completion !== "complete") {
     return (
-      <div className={'task p' + priority}>
+      <div className={'task p' + task.priority}>
         <div className="task-name">
-          <input type="checkbox" onChange={completeTask}></input>
-          <span>{name}</span>
+          <CompleteTask task={task} completeFn={completeFn} />
+          <span>{task.name}</span>
         </div>
         <Priority />
         <Date />

@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import GenerateOptions from "./GenerateOptions";
 
-export default function Calendar({ show, setFunction }) {
+export default function Calendar({ newTask, setFunction }) {
     // renders only if show===true - later can create an animation or somethin maybe
 
     // todays date 
@@ -69,29 +69,29 @@ export default function Calendar({ show, setFunction }) {
 
 
     /* --------------------------------- return --------------------------------- */
-    if (show === true) {
+    if (newTask.hasDeadline === true) {
         const calendarDisplay="show-display";
         return (
             <div className={`form-calendar ${calendarDisplay}`}>
 
                 <h3>Set Deadline</h3>
-    
                 {/* day  */}
-                <select value={dateState.getDate()} onChange={(e) => updateDate("day", e.target.value)}>
+                <select value={newTask.deadline.getDate()} onChange={(e) => updateDate("day", e.target.value)}>
                     <GenerateOptions start={1} step={1} number={31} />
                 </select>
     
     
     
+    
                 {/* month */}
-                <select value={dateState.getMonth()} onChange={(e) => updateDate("month", e.target.value)}>
+                <select value={newTask.deadline.getMonth()} onChange={(e) => updateDate("month", e.target.value)}>
                     <MonthOptions />
                 </select>
     
     
     
                 {/* year  */}
-                <select value={dateState.getFullYear()} onChange={(e) => updateDate("year", e.target.value)}>
+                <select value={newTask.deadline.getFullYear()} onChange={(e) => updateDate("year", e.target.value)}>
                     <GenerateOptions start={today.getFullYear()} step={1} number={5} />
                 </select>
     

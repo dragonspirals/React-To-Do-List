@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Task from "./Task"
 import Form from "./New task form/Form";
 import './generated-styles/Display-tasks.css'
+import CompleteTask from "./CompleteTask";
 
 
 export default function AllTasks() {
@@ -17,11 +18,23 @@ export default function AllTasks() {
         })
     }
 
+
+    function completeTask(task) {
+        const index = taskList.indexOf(task);
+        const newList = taskList.toSpliced(index, 1);
+        setTaskList(newList);
+    }
+
+
+
+    /* --------------------------------- display -------------------------------- */
     const DisplayTasks = () => {
         return (
             <div className="Display-tasks" >
                 {taskList.map(item => (
-                <Task name={item.name} priority={item.priority} deadline={item.deadline} hasDeadline={item.hasDeadline}/>
+                    <>
+                    <Task task={item} key={item.id} completeFn={completeTask}/>
+                    </>
                 ))}
             </div>
         )

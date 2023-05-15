@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {v4 as uuidv4} from "uuid";
 import '../generated-styles/Form.css';
 import Calendar from "./Calendar";
 import CalendarApp from "./CalendarApp";
@@ -10,13 +11,15 @@ import CalendarApp from "./CalendarApp";
 export default function TaskForm( { submitForm } ) {
 
 
+    var idcount = 0;
     // blank task for resetting task state after submit
     const blankTask = {
         name:"",
         completion: "incomplete",
         priority:"",
         hasDeadline: false,
-        deadline: new Date()
+        deadline: new Date(),
+        id: uuidv4()
         }
 
     
@@ -65,6 +68,8 @@ export default function TaskForm( { submitForm } ) {
         
     }
     
+
+        
     
    
 
@@ -127,7 +132,7 @@ export default function TaskForm( { submitForm } ) {
     return (
         <form className="Form" onSubmit={handleSubmit}>
             <div className="form-item-div form-label">
-                <label className="form-item" HtmlFor="New-task">Add New Task </label>
+                <label className="form-item" htmlFor="New-task">Add New Task </label>
             </div>
 
 
@@ -140,7 +145,7 @@ export default function TaskForm( { submitForm } ) {
 
             <Priority />
             <DeadlineBtn />
-            <Calendar show={newTask.hasDeadline} setFunction={setDeadline} />
+            <Calendar newTask={newTask} show={newTask.hasDeadline} setFunction={setDeadline} />
             {/* <CalendarApp /> */}
 
             <div className="form-item-div form-submit">

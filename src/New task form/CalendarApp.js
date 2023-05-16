@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import GenerateOptions, {GenerateMonths} from "./GenerateOptions";
-
+import ArrayToTable from "./ArrayToTable";
+import flatDates, {splitWeek} from "./arrayFns.js"
 
 
 // THIS FILE PROBABLY SHOULD BE SEPARATED INTO SMALLER FILES 
-export default function CalendarApp() {
-
+export default function CalendarApp({ updateDate }) {
 
     const today = new Date();
-
-    const weekDay = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     
     function DateTable() {
       
@@ -17,42 +15,54 @@ export default function CalendarApp() {
 
         /* ------------------------ array to table functions ------------------------ */
 
-        // array becomes row with array elements 
-        const ArrayToRow = ({ array }) => {
-            return (
-                <tr>
-                    {array.map(cell => (
-                        <td className="table-box">{cell}</td>
-                    ))}
-                </tr>
-            )
-        }
+        // // array becomes row with array elements 
+        // const ArrayToRow = ({ array }) => {
+        //     return (
+        //         <tr>
+        //             {array.map(cell => (
+        //                 <td onClick={()=>{updateDate("day", cell)}} 
+        //                 className="table-box">{cell}</td>
+        //             ))}
+        //         </tr>
+        //     )
+        // }
 
        
 
-        // 2d array becomes table with array elements being rows 
-        const ArrayToTable = ({ array }) => {
+        // // 2d array becomes table with array elements being rows 
+        // const ArrayToTable = ({ array }) => {
         
-            return(
-                <table>
+        //     return(
+        //         <table>
 
-                    <tr>
-                        {weekDay.map(cell => (
-                            <th className="table-headings">{cell}</th>
-                        ))}
-                    </tr>
+        //             <tr>
+        //                 {weekDay.map(cell => (
+        //                     <th className="table-headings">{cell}</th>
+        //                 ))}
+        //             </tr>
 
-                    {array.map(row => (
-                        <ArrayToRow array={row} />
-                    ))}
-                </table >
-            )
-        }
+        //             {array.map(row => (
+        //                 <ArrayToRow array={row} />
+        //             ))}
+        //         </table >
+        //     )
+        // }
 
 
         /* --------------------------- date array to table -------------------------- */
 
         // creates a table of the inputted month sorted by weeks
+        
+
+
+    // month table with interface to change month
+    
+
+        const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        const [viewMonth, setViewMonth] = useState(firstOfMonth);
+
+        
+
         const MonthTable = ({ year, month }) => {
 
 
@@ -71,37 +81,37 @@ export default function CalendarApp() {
 
             /* -------------------------------- functions ------------------------------- */
 
-            // splits an array into sub-arrays of length 7 
-            function splitWeek(flatArray) {
+            // // splits an array into sub-arrays of length 7 
+            // function splitWeek(flatArray) {
 
-                const newArray = [];
+            //     const newArray = [];
 
-                for (let i=0; i<flatArray.length; i++) {
-                    // create an array for each week inside array 
-                    if (i%7 === 0) {
-                        const weekArray = [];
-                        newArray.push(weekArray);
-                    }
+            //     for (let i=0; i<flatArray.length; i++) {
+            //         // create an array for each week inside array 
+            //         if (i%7 === 0) {
+            //             const weekArray = [];
+            //             newArray.push(weekArray);
+            //         }
 
-                    newArray[Math.floor(i/7)].push(flatArray[i]);
-                }
+            //         newArray[Math.floor(i/7)].push(flatArray[i]);
+            //     }
 
-                return(newArray);
-            }
+            //     return(newArray);
+            // }
 
-            // flat array of dates
-            function flatDates(startDate, numDays) {
-                const array = [];
+            // // flat array of dates
+            // function flatDates(startDate, numDays) {
+            //     const array = [];
 
-                for (let i=0; i<numDays; i++) {
-                    const date = new Date();
+            //     for (let i=0; i<numDays; i++) {
+            //         const date = new Date();
 
-                    date.setDate(startDate.getDate() + i);
-                    array.push(date.getDate());
-                }
+            //         date.setDate(startDate.getDate() + i);
+            //         array.push(date.getDate());
+            //     }
 
-                return array;
-            }
+            //     return array;
+            // }
 
             function monthArray() {
                 const dateArray = flatDates(firstDay, monthLength);
@@ -117,75 +127,66 @@ export default function CalendarApp() {
             /* --------------------------------- return --------------------------------- */
 
             return (
-                <ArrayToTable className="Calendar-table" headings={[weekDay]} array={monthArray()} />
+                <ArrayToTable className="Calendar-table" array={monthArray()} />
             )
 
 
         }
 
 
-        // month table with interface to change month
-        const ChangeMonthTable = () => {
-
-            const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-            const [viewMonth, setViewMonth] = useState(firstOfMonth);
-
-            
-
-            const ChangeMonth = () => {
-                function setMonth(year, month) {
-                    const newFirst = new Date(year, month, 1);
-                    setViewMonth(newFirst);
-                }
-
-                const nextMonth = () => {
-                    setMonth(viewMonth.getFullYear(), viewMonth.getMonth() + 1);
-                }
-
-                const lastMonth = () => {
-                    setMonth(viewMonth.getFullYear(), viewMonth.getMonth() - 1);
-                }
 
 
-                const SelectMonth = () => {
-                    return (
-                        <>
-                        <select value={viewMonth.getMonth()} onChange={(e) => setMonth(viewMonth.getFullYear(), e.target.value)}>
-                            <GenerateMonths />
-                        </select>
-                        <select value={viewMonth.getFullYear()} onChange={(e) => setMonth(e.target.value, viewMonth.getMonth())}>
-                            <GenerateOptions start = {today.getFullYear()} step={1} number={5} />
-                        </select>
-                        </>
-                    )
-                }
+        const ChangeMonth = () => {
+            function setMonth(year, month) {
+                const newFirst = new Date(year, month, 1);
+                setViewMonth(newFirst);
+            }
+
+            const nextMonth = () => {
+                setMonth(viewMonth.getFullYear(), viewMonth.getMonth() + 1);
+            }
+
+            const lastMonth = () => {
+                setMonth(viewMonth.getFullYear(), viewMonth.getMonth() - 1);
+            }
+
+
+            const SelectMonth = () => {
                 return (
                     <>
-                    <SelectMonth />
-                    <button className="form-btn" onClick={lastMonth}>Previous Month</button>
-                    <button className="form-btn" onClick={nextMonth}>Next Month</button>                    
+                    <select value={viewMonth.getMonth()} onChange={(e) => setMonth(viewMonth.getFullYear(), e.target.value)}>
+                        <GenerateMonths />
+                    </select>
+                    <select value={viewMonth.getFullYear()} onChange={(e) => setMonth(e.target.value, viewMonth.getMonth())}>
+                        <GenerateOptions start = {today.getFullYear()} step={1} number={5} />
+                    </select>
                     </>
                 )
             }
-
             return (
                 <>
-                <ChangeMonth />
-                <p>{viewMonth.toLocaleString('default', { month: 'long' })}  {viewMonth.getFullYear()}</p>
-                <MonthTable year={viewMonth.getFullYear()} month={viewMonth.getMonth()} />
+                <SelectMonth />
+                <button className="form-btn" onClick={lastMonth}>Previous Month</button>
+                <button className="form-btn" onClick={nextMonth}>Next Month</button>                    
                 </>
             )
         }
 
         return (
             <>
-            <ChangeMonthTable />
+            <ChangeMonth />
+            <p>{viewMonth.toLocaleString('default', { month: 'long' })}  {viewMonth.getFullYear()}</p>
+            <MonthTable year={viewMonth.getFullYear()} month={viewMonth.getMonth()} />
             </>
         )
+    
+
+
 
         
 
     }
+    
     
     return(
         <div className="Calendar-app">

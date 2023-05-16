@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import GenerateOptions from "./GenerateOptions";
+import CalendarApp from "./CalendarApp";
 
 export default function Calendar({ newTask, setFunction }) {
     // renders only if show===true - later can create an animation or somethin maybe
@@ -94,6 +95,9 @@ export default function Calendar({ newTask, setFunction }) {
                 <select value={newTask.deadline.getFullYear()} onChange={(e) => updateDate("year", e.target.value)}>
                     <GenerateOptions start={today.getFullYear()} step={1} number={5} />
                 </select>
+
+
+                <CalendarApp updateDate={updateDate}/>
     
             </div>
         )

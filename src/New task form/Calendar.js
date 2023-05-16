@@ -97,7 +97,7 @@ export default function Calendar({ newTask, setFunction }) {
                 </select>
 
 
-                <CalendarApp updateDate={updateDate}/>
+                <CalendarApp  updateDate={updateDate}/>
     
             </div>
         )

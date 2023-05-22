@@ -1,51 +1,25 @@
-import React, { useState } from 'react';
-import CompleteTask from './CompleteTask';
 
 
-
-// function that returns tasks and checkboxes
-let Task = ({ task, completeFn }) => {
-  
-
-  const Priority = () => {
-    if (task.priority !== "") {
-      return (
-        <div className="priority" >Priority: {task.priority}</div>
-      )
-    }
-  }
-
-  const Date = () => {
-
-      if (task.hasDeadline === true) {
-        return(
-          <span>{task.deadline.getDate()}/{task.deadline.getMonth()}/{task.deadline.getFullYear()}</span>
-        )
-      }
-  }
-
-
-
-  
-
-  // displays the task if it isnt completed
-  if (task.completion !== "complete") {
+// display one task 
+export default function Task({ task }) {
     return (
-      <div className={'task p' + task.priority}>
-        <div className="task-name">
-          <CompleteTask task={task} completeFn={completeFn} />
-          <span>{task.name}</span>
-        </div>
-        <Priority />
-        <Date />
-        {/* <Time /> */}
-      </div> 
+        <tr className="task">
+
+        {/* //     <td className="checkbox">
+        //         <input type="checkbox" value={task.completed} />
+        //     </td> */}
+
+            <td className="task-name task-cell">
+                <p>{task.name}</p>
+            </td>
+
+        {/*      <td className="task-deadline">
+                 <p>{task.deadline}</p>
+             </td>
+
+             <td className="task-priority">
+                <p>{task.priority}</p>
+             </td> */}
+        </tr>
     )
-  }
-};
-
-
-
-
- 
-export default Task;
+}

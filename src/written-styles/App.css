@@ -1,3 +1,6 @@
+
+
+
 .App {
   text-align: left;
 }
@@ -34,13 +37,17 @@
 
 /* ------------------------------ Display Tasks ----------------------------- */
 
-.task {
-  display:flex;
+.display-task-list {
+  border: 1px solid black;
 }
 
-.task-name {
-  width:70%;
+.task-cell {
+  border:1px solid black;
+  padding:2px;
+  width:50%
 }
+
+
 
 
 

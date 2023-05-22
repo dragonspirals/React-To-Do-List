@@ -1,0 +1,37 @@
+
+# ---------------------------------------------------------------------------- #
+#                                    SUMMARY                                   #
+# ---------------------------------------------------------------------------- #
+
+----Summary of file structure----
+> App.js
+    > Form ------------------ Add new tasks
+        > Deadline ---------- add a deadline
+    > DisplayTasks ---------- displays all the tasks 
+        > Task  ------------- display one task
+
+# ---------------------------------------------------------------------------- #
+#                                     FILES                                    #
+# ---------------------------------------------------------------------------- #
+
+
+# ---------------------------------- App.js ---------------------------------- #
+
+>> taskList - [[state var]] - an array of all tasks
+>> addTask - [[function]] - adds a new task to the taskList
+
+--props--
+>> DisplayTasks <= taskList
+>> Form <= addTask
+
+# ------------------------------ DisplayTasks.js ----------------------------- #
+
+
+
+# ---------------------------------- Form.js --------------------------------- #
+
+>> newTask = [[state var]] - new task [[object]]
+    > object properties 
+        > deadline
+        > priority
+    

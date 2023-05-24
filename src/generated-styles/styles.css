@@ -72,6 +72,10 @@ th {
   width: 10%;
 }
 
+.task-deadline {
+  width: 10%;
+}
+
 .placeholder {
   color: grey;
 }/*# sourceMappingURL=styles.css.map */

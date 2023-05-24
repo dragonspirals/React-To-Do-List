@@ -25,8 +25,8 @@ export default function DisplayCompleted({ taskList }) {
         <>
 
         <button onClick={()=>{setShow(!show)}}>{show ? "Hide" : "Show"} Completed Tasks</button>
-
-
+        
+        <br /> <br />
         {(show) && 
         <table className="display-task-list">
             <tbody>

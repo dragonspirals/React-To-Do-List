@@ -1,5 +1,5 @@
 
-import './styles/App.css';
+import './generated-styles/styles.css';
 import React, { useState } from 'react'
 import Form from './Form/Form';
 import DisplayTasks from './List/DisplayTasks';
@@ -47,12 +47,19 @@ function App() {
       {/* form  */}
       <Form addTask={addTask}/>
 
-      <button onClick={resetList} >Clear All</button>
+      
 
-      <DisplayTasks taskList={taskList} editTask={editTask} />
 
-      <br></br>
-      <DisplayCompleted taskList={taskList} />
+      <main>
+        <button onClick={resetList} >Clear All</button>
+
+        <br /><br />
+        <DisplayTasks taskList={taskList} editTask={editTask} />
+
+        <br></br>
+        <DisplayCompleted taskList={taskList} />
+      </main>
+      
 
     </div>
   );

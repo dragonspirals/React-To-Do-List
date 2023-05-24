@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Reem+Kufi+Fun:wght@500&display=swap');
+
+
+/* -------------------------------- variables ------------------------------- */
+
+// fonts 
+$primary-font: 'Montserrat', sans-serif;
+$header-font: 'Reem Kufi Fun', sans-serif;
+
+// colors 
+$primary-color: #3e6b5a;
+$secondary-color: #bad2cb;
+$dark-color: #28342c;
+$off-white: #eff8e8;
+
+
+/* ------------------------------ html defaults ----------------------------- */
+
+* {
+    font-family: $primary-font;
+    transition:0.5s;
+}
+
+
+h1 {
+    font-family: $header-font;
+}
+
+main {
+    background-color: $secondary-color;
+    padding:2%;
+}
+
+table {
+    background-color:$off-white;
+}
+
+th {
+    font-family: $header-font;
+    color: $dark-color;
+}
+
+/* ------------------------------------ - ----------------------------------- */
+
+.App {
+    text-align: left;
+  }
+  
+  
+  
+  .App-header {
+    background-color: $dark-color;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  
+  .All-tasks {
+    background-color: $off-white;
+    width:60vw;
+    margin:auto;
+    padding:2%;
+  }
+  
+
+  
+  /* ------------------------------ Display Tasks ----------------------------- */
+  
+  .display-task-list {
+    border: 1px solid black;
+    width:100%;
+    padding:2%;
+  }
+  
+  
+  /* -------------------------------- task form ------------------------------- */
+  
+  .task-form {
+    background-color: $off-white;
+    padding:2%
+  }
+  
+  .checkbox-div {
+    width:10%;
+  }
+  
+  .task-name {
+    width:50%;
+  }
+  
+  .task-priority {
+    width:10%;
+  }
+  
+  .placeholder {
+    color:grey;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,8 +1,9 @@
 
-import './written-styles/App.css';
+import './styles/App.css';
 import React, { useState } from 'react'
 import Form from './Form/Form';
-import DisplayTasks from './DisplayTasks';
+import DisplayTasks from './List/DisplayTasks';
+import DisplayCompleted from './List/DisplayCompleted';
 
 function App() {
 
@@ -19,6 +20,22 @@ function App() {
     }
   }
 
+
+  const editTask = (index, attribute, value) => {
+    const newTask=taskList[0];
+    newTask[attribute]=value;
+    var newList = [...taskList];
+    newList.splice(index, 1, newTask);
+    setTaskList(newList);
+  
+  }
+
+  function resetList() {
+    const newList = [];;
+    setTaskList(newList);
+  }
+
+
   /* ---------------------------- return statement ---------------------------- */
   return (
     <div className="App">
@@ -30,8 +47,12 @@ function App() {
       {/* form  */}
       <Form addTask={addTask}/>
 
+      <button onClick={resetList} >Clear All</button>
 
-      <DisplayTasks taskList={taskList}/>
+      <DisplayTasks taskList={taskList} editTask={editTask} />
+
+      <br></br>
+      <DisplayCompleted taskList={taskList} />
 
     </div>
   );

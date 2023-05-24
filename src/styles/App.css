@@ -26,9 +26,7 @@
   padding:2%;
 }
 
-.Task-list {
-  display:flex;
-}
+
 
 
 
@@ -39,13 +37,34 @@
 
 .display-task-list {
   border: 1px solid black;
+  width:100%;
 }
 
-.task-cell {
-  border:1px solid black;
-  padding:2px;
-  width:50%
+
+/* -------------------------------- task form ------------------------------- */
+
+.task-form {
+  background-color: antiquewhite;
+  padding:2%
 }
+
+.checkbox-div {
+  width:10%;
+}
+
+.task-name {
+  width:50%;
+}
+
+.task-priority {
+  width:10%;
+}
+
+.placeholder {
+  color:grey;
+}
+
+
 
 
 

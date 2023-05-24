@@ -9,6 +9,7 @@
         > Deadline ---------- add a deadline
     > DisplayTasks ---------- displays all the tasks 
         > Task  ------------- display one task
+            CompleteTask  --- Checkbox which sets task to complete
 
 # ---------------------------------------------------------------------------- #
 #                                     FILES                                    #
@@ -34,4 +35,5 @@
     > object properties 
         > deadline
         > priority
+        > completed [[bool]]
     

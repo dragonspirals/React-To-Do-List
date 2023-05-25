@@ -31,9 +31,6 @@ main {
     padding:2%;
 }
 
-table {
-    background-color:$off-white;
-}
 
 th {
     font-family: $header-font;
@@ -103,6 +100,14 @@ th {
   
   .placeholder {
     color:grey;
+  }
+
+
+  /* -------------------------------- calendar -------------------------------- */
+  .calendar-month {
+    padding:2%;
+    background-color: $secondary-color;
+    width:fit-content;
   }
   
   

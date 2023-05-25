@@ -1,19 +1,10 @@
-import { useState } from "react";
+import Calendar from "./Calendar";
 
 export default function Deadline({ newTask, setNewTask }) {
 
     const today = new Date();
 
-    const [dateState, setDateState] = useState(new Date);
     
-
-    
-
-    // function setTaskDeadline() {
-    //     setNewTask(current => { return {
-    //         ...current, deadline:dateState.getDeadline()}
-    //     })
-    // }
 
     function setDeadline(attribute, value) {
         var updatedDate = newTask.deadline;
@@ -91,6 +82,7 @@ export default function Deadline({ newTask, setNewTask }) {
         <Day />
         <Month />
         <Year />
+        <Calendar />
         </>
     )
 }

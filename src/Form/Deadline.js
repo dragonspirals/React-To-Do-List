@@ -82,7 +82,7 @@ export default function Deadline({ newTask, setNewTask }) {
         <Day />
         <Month />
         <Year />
-        <Calendar />
+        <Calendar newTask={newTask} setNewTask={setNewTask}/>
         </>
     )
 }

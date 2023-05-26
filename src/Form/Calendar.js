@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 
-export default function Calendar() {
-
+export default function Calendar({ newTask, setNewTask }) {
 
     const today = new Date();
 
@@ -15,9 +14,15 @@ export default function Calendar() {
 
     /* -------------------------------- functions ------------------------------- */
 
+    // select a date on the calendar 
+    function selectDate(date) {
+        setNewTask(task=> {
+            return ({...task, deadline: date})
+        })
+    }
+
     const flatMonth = () => {
         const fillStart = (viewMonth.getDay()+6)%7;
-        console.log(fillStart);
 
         const array = Array(fillStart).fill("");
         for(let i=0; i<monthLength; i++) {
@@ -55,12 +60,39 @@ function ChangeMonth() {
         setViewMonth(newMonth);
     }
 
+
+    // array of months 
+    const months = ["January", "February", "March", "April", "May", "June", 
+    "July", "August", "September", "October", "November", "December"];
+
+    // first 3 letters of month
+    months.short = months.map(month => (month.slice(0,3)));
+
+    // array of the next 20 years
+    const years = Array(20).fill(null).map((value, index) => (today.getFullYear()+index));
+
     return (
         <>
         {/* // previous month */}
         <button onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()-1)}}>Previous Month</button>
         {/* // next month  */}
         <button onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()+1)}}>Next Month</button>
+        
+        <br />
+
+        {/* select month */}
+        <select value={viewMonth.getMonth()} onChange={(e)=>{changeMonth(viewMonth.getFullYear(), e.target.value)}}>
+            {months.map((month, index) => (
+                <option value={index}>{month}</option>
+            ))}
+        </select>
+
+        {/* select year  */}
+        <select value={viewMonth.getFullYear()} onChange={(e)=>{changeMonth(e.target.value, viewMonth.getMonth())}}>
+            {years.map((year) => (
+                <option value={year}>{year}</option>
+            ))}
+        </select>
         </>
     )
 }
@@ -71,7 +103,13 @@ function ChangeMonth() {
         return (
             <tr>
                 {array.map(value => (
-                    <td>{value!=="" && value.getDate()}</td>
+                    value!=="" ? 
+
+                    <td onClick={()=>selectDate(value)}>
+                        {value.getDate()}
+                    </td>
+
+                     : <td></td>
                 ))}
             </tr>
         )
@@ -98,7 +136,6 @@ function ChangeMonth() {
         <div className="calendar-month">
             <h4>Set Deadline</h4>
             <ChangeMonth />
-            <p>{viewMonth.toLocaleString( 'default', {month: 'long'})} {viewMonth.getFullYear()}</p>
             <ArrayToTable array={monthInWeeks()} />
         </div>
     )

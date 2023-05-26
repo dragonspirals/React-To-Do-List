@@ -82,4 +82,8 @@ th {
   background-color: #bad2cb;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.current {
+  background-color: blue;
 }/*# sourceMappingURL=styles.css.map */

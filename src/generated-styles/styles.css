@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Reem+Kufi+Fun:wght@500&display=swap");
 /* -------------------------------- variables ------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                   mixins                                   */
+/* -------------------------------------------------------------------------- */
 /* ------------------------------ html defaults ----------------------------- */
 * {
   font-family: "Montserrat", sans-serif;
@@ -18,6 +21,29 @@ main {
 th {
   font-family: "Reem Kufi Fun", sans-serif;
   color: #28342c;
+}
+
+button {
+  cursor: pointer;
+  background-color: #3e6b5a;
+  color: white;
+  border-style: none;
+  padding: 5px;
+}
+button:hover {
+  background-color: #5161a6;
+}
+
+/* ----------------------------- general classes ---------------------------- */
+.button {
+  cursor: pointer;
+  background-color: #3e6b5a;
+  color: white;
+  border-style: none;
+  padding: 5px;
+}
+.button:hover {
+  background-color: #5161a6;
 }
 
 /* ------------------------------------ - ----------------------------------- */
@@ -48,12 +74,17 @@ th {
   border: 1px solid black;
   width: 100%;
   padding: 2%;
+  background-color: #eff8e8;
 }
 
 /* -------------------------------- task form ------------------------------- */
 .task-form {
   background-color: #eff8e8;
   padding: 2%;
+}
+
+.form-item {
+  margin: 1%;
 }
 
 .checkbox-div {
@@ -78,7 +109,8 @@ th {
 
 /* -------------------------------- calendar -------------------------------- */
 .calendar-month {
-  padding: 2%;
+  padding: 3%;
+  margin: 2%;
   background-color: #bad2cb;
   width: -moz-fit-content;
   width: fit-content;

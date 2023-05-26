@@ -14,7 +14,21 @@ $dark-color: #28342c;
 $off-white: #eff8e8;
 $accent-color: #5161a6;
 
+/* -------------------------------------------------------------------------- */
+/*                                   mixins                                   */
+/* -------------------------------------------------------------------------- */
 
+@mixin button {
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  border-style: none;
+  padding:5px;
+
+  &:hover {
+    background-color: $accent-color;
+  }
+}
 /* ------------------------------ html defaults ----------------------------- */
 
 * {
@@ -36,6 +50,17 @@ main {
 th {
     font-family: $header-font;
     color: $dark-color;
+}
+
+button {
+  @include button;
+}
+
+
+/* ----------------------------- general classes ---------------------------- */
+
+.button {
+  @include button;
 }
 
 /* ------------------------------------ - ----------------------------------- */
@@ -64,8 +89,8 @@ th {
     margin:auto;
     padding:2%;
   }
-  
 
+  
   
   /* ------------------------------ Display Tasks ----------------------------- */
   
@@ -73,6 +98,7 @@ th {
     border: 1px solid black;
     width:100%;
     padding:2%;
+    background-color:$off-white;
   }
   
   
@@ -81,6 +107,10 @@ th {
   .task-form {
     background-color: $off-white;
     padding:2%
+  }
+
+  .form-item {
+    margin:1%;
   }
   
   .checkbox-div {
@@ -105,13 +135,17 @@ th {
 
 
   /* -------------------------------- calendar -------------------------------- */
+  
   .calendar-month {
-    padding:2%;
+    padding:3%;
+    margin:2%;
     background-color: $secondary-color;
     width:fit-content;
   }
 
 
+
+  // each cell in the calendar 
   .calendar-date {
     padding:3px;
     cursor:pointer;

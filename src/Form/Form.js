@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuid } from 'uuid';
 import Priority from "./Priority";
-import Deadline from "./Deadline";
+import Calendar from "./Calendar";
 
 export default function Form({ addTask }) {
     const blankTask = {
@@ -17,6 +17,10 @@ export default function Form({ addTask }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        if (newTask.name==="") {
+            return;
+        }
         addTask(newTask);
         setNewTask(blankTask);
     }
@@ -36,15 +40,19 @@ export default function Form({ addTask }) {
 
     return (
         <form className="task-form" onSubmit={handleSubmit}>
-            <h3>Add New Task</h3>
-            <input type="text" onChange={e => {setTaskName(e.target.value)}} value={newTask.name} />
+
+            <h3 className="form-item">Add New Task</h3>
+            
+            <input className="form-item" placeholder="Task Name" type="text" onChange={e => {setTaskName(e.target.value)}} value={newTask.name} />
+            
             <Priority newTask={newTask} setNewTask={setNewTask} />
 
-            <button onClick={showDeadline}>Deadline</button>
-            {newTask.hasDeadline && <Deadline newTask={newTask} setNewTask={setNewTask} />}
+            <button className="form-item" onClick={showDeadline}>{!newTask.hasDeadline ? "Show": "Hide"} Deadline</button>
+            
+            {newTask.hasDeadline && <Calendar newTask={newTask} setNewTask={setNewTask} />}
             
 
-            <input type="submit"></input>
+            <input className="button" type="submit"></input>
         </form>
     )
 }

@@ -16,6 +16,7 @@ export default function Calendar({ newTask, setNewTask }) {
 
     // select a date on the calendar 
     function selectDate(date) {
+
         setNewTask(task=> {
             return ({...task, deadline: date})
         })
@@ -83,14 +84,14 @@ function ChangeMonth() {
         {/* select month */}
         <select value={viewMonth.getMonth()} onChange={(e)=>{changeMonth(viewMonth.getFullYear(), e.target.value)}}>
             {months.map((month, index) => (
-                <option value={index}>{month}</option>
+                <option key={month} value={index}>{month}</option>
             ))}
         </select>
 
         {/* select year  */}
         <select value={viewMonth.getFullYear()} onChange={(e)=>{changeMonth(e.target.value, viewMonth.getMonth())}}>
             {years.map((year) => (
-                <option value={year}>{year}</option>
+                <option key={year} value={year}>{year}</option>
             ))}
         </select>
         </>
@@ -102,15 +103,20 @@ function ChangeMonth() {
     function ArrayToRow({ array }) {
         return (
             <tr>
-                {array.map(value => (
+                {array.map(value => {
+                    return (
                     value!=="" ? 
 
-                    <td onClick={()=>selectDate(value)}>
+                    <td key={viewMonth.getMonth() + value.getDate()} 
+                    className={`calendar-date ${value.getTime()===newTask.deadline.getTime() ? "current" : ""}`} 
+                    onClick={()=>selectDate(value)}>
+
                         {value.getDate()}
+
                     </td>
 
                      : <td></td>
-                ))}
+                )})}
             </tr>
         )
     }
@@ -124,7 +130,7 @@ function ChangeMonth() {
             <table>
                 <tbody>
                     {array.map(rowArray => (
-                        <ArrayToRow array={rowArray} />
+                        <ArrayToRow array={rowArray} key={viewMonth.getMonth() + rowArray[0]} />
                     ))}
                 </tbody>
                 
@@ -134,7 +140,7 @@ function ChangeMonth() {
 
     return (
         <div className="calendar-month">
-            <h4>Set Deadline</h4>
+            <h4>Set Deadline: {newTask.deadline.getDate()}/{newTask.deadline.getMonth()}/{newTask.deadline.getFullYear()}</h4>
             <ChangeMonth />
             <ArrayToTable array={monthInWeeks()} />
         </div>

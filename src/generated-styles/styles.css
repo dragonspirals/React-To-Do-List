@@ -84,6 +84,15 @@ th {
   width: fit-content;
 }
 
-.current {
-  background-color: blue;
+.calendar-date {
+  padding: 3px;
+  cursor: pointer;
+}
+.calendar-date:hover {
+  background-color: #5161a6;
+  color: white;
+}
+.calendar-date.current {
+  background-color: #5161a6;
+  color: white;
 }/*# sourceMappingURL=styles.css.map */

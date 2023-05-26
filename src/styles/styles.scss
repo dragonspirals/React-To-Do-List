@@ -12,6 +12,7 @@ $primary-color: #3e6b5a;
 $secondary-color: #bad2cb;
 $dark-color: #28342c;
 $off-white: #eff8e8;
+$accent-color: #5161a6;
 
 
 /* ------------------------------ html defaults ----------------------------- */
@@ -110,9 +111,22 @@ th {
     width:fit-content;
   }
 
-  .current {
-    background-color: blue;
+
+  .calendar-date {
+    padding:3px;
+    cursor:pointer;
+
+    &:hover {
+      background-color:$accent-color;
+      color:white;
+    }
+
+    &.current {
+      background-color: $accent-color;
+      color:white;
+    }
   }
+
   
   
   

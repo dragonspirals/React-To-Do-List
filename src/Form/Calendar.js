@@ -75,21 +75,21 @@ function ChangeMonth() {
     return (
         <>
         {/* // previous month */}
-        <button onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()-1)}}>Previous Month</button>
+        <button className="form-item" onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()-1)}}>Previous Month</button>
         {/* // next month  */}
-        <button onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()+1)}}>Next Month</button>
+        <button className="form-item" onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()+1)}}>Next Month</button>
         
         <br />
 
         {/* select month */}
-        <select value={viewMonth.getMonth()} onChange={(e)=>{changeMonth(viewMonth.getFullYear(), e.target.value)}}>
+        <select className="form-item" value={viewMonth.getMonth()} onChange={(e)=>{changeMonth(viewMonth.getFullYear(), e.target.value)}}>
             {months.map((month, index) => (
                 <option key={month} value={index}>{month}</option>
             ))}
         </select>
 
         {/* select year  */}
-        <select value={viewMonth.getFullYear()} onChange={(e)=>{changeMonth(e.target.value, viewMonth.getMonth())}}>
+        <select className="form-item" value={viewMonth.getFullYear()} onChange={(e)=>{changeMonth(e.target.value, viewMonth.getMonth())}}>
             {years.map((year) => (
                 <option key={year} value={year}>{year}</option>
             ))}
@@ -103,11 +103,11 @@ function ChangeMonth() {
     function ArrayToRow({ array }) {
         return (
             <tr>
-                {array.map(value => {
+                {array.map((value, index) => {
                     return (
                     value!=="" ? 
 
-                    <td key={viewMonth.getMonth() + value.getDate()} 
+                    <td key={value.getDate()} 
                     className={`calendar-date ${value.getTime()===newTask.deadline.getTime() ? "current" : ""}`} 
                     onClick={()=>selectDate(value)}>
 
@@ -115,7 +115,7 @@ function ChangeMonth() {
 
                     </td>
 
-                     : <td></td>
+                     : <td key={"blank" + index}></td>
                 )})}
             </tr>
         )
@@ -130,7 +130,7 @@ function ChangeMonth() {
             <table>
                 <tbody>
                     {array.map(rowArray => (
-                        <ArrayToRow array={rowArray} key={viewMonth.getMonth() + rowArray[0]} />
+                        <ArrayToRow array={rowArray} key={"row" + rowArray[0]} />
                     ))}
                 </tbody>
                 

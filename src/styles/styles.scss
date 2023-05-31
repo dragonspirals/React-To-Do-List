@@ -57,10 +57,18 @@ button {
 }
 
 
+circle {
+  position:absolute;
+}
+
 /* ----------------------------- general classes ---------------------------- */
 
 .button {
   @include button;
+}
+
+.clickable  {
+  cursor: pointer;
 }
 
 /* ------------------------------------ - ----------------------------------- */
@@ -165,13 +173,12 @@ button {
   
   /* --------------------------------- e hower -------------------------------- */
 
-  .e-hower {
+  .e-hower-div {
     width:20vw;
     height: 20vw;
-    background-color: black;
-
+    background-image: url("../images/asana-eisenhower.webp");
+    background-size: cover;
   }
-  
   
   
   

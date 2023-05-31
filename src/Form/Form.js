@@ -71,7 +71,7 @@ export default function Form({ addTask }) {
 
 
             {/* eisenhower matrix */}
-            <button className="form-item" onClick={showEHower}>{!newTask.showEHower ? "Show": "Hide"} Eisenhower Matrix</button>
+            <button className="form-item" onClick={showEHower}>{!newTask.hasEHower ? "Show": "Hide"} Eisenhower Matrix</button>
             {newTask.hasEHower && <EHower newTask={newTask} setNewTask={setNewTask} />}
             
 

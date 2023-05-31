@@ -34,6 +34,10 @@ button:hover {
   background-color: #5161a6;
 }
 
+circle {
+  position: absolute;
+}
+
 /* ----------------------------- general classes ---------------------------- */
 .button {
   cursor: pointer;
@@ -44,6 +48,10 @@ button:hover {
 }
 .button:hover {
   background-color: #5161a6;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 /* ------------------------------------ - ----------------------------------- */
@@ -130,8 +138,9 @@ button:hover {
 }
 
 /* --------------------------------- e hower -------------------------------- */
-.e-hower {
+.e-hower-div {
   width: 20vw;
   height: 20vw;
-  background-color: black;
+  background-image: url("../images/asana-eisenhower.webp");
+  background-size: cover;
 }/*# sourceMappingURL=styles.css.map */

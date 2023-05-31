@@ -5,11 +5,14 @@ export default function Calendar({ newTask, setNewTask }) {
 
     const today = new Date();
 
+
+    // viewMonth - state - 1st day of the visible month
     const [viewMonth, setViewMonth] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
     
+    // lastDay - last day of the visible month
     const lastDay = new Date(viewMonth.getFullYear(), viewMonth.getMonth()+1, -1);
     
-
+    // length of the visible month 
     const monthLength = lastDay.getDate();
 
     /* -------------------------------- functions ------------------------------- */
@@ -22,18 +25,24 @@ export default function Calendar({ newTask, setNewTask }) {
         })
     }
 
-    const flatMonth = () => {
-        const fillStart = (viewMonth.getDay()+6)%7;
 
+    // creates an array of dates for each day of the visible month
+    const flatMonth = () => {
+
+        // fillStart - no of empty cells in 1st week of the calendar (so the weekdays align correctly)
+        const fillStart = (viewMonth.getDay()+6)%7;
         const array = Array(fillStart).fill("");
+
+
         for(let i=0; i<monthLength; i++) {
             const date = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), i+1 );
             array.push(date);
         }
+
         return array;
     }
 
-    // an array of arrays - month=[[week1], [week2],...] 
+    // an array of arrays of dates split into weeks - month=[[week1], [week2],...] 
     function monthInWeeks() {
         const array=[];
         const flatArray = flatMonth();
@@ -52,10 +61,10 @@ export default function Calendar({ newTask, setNewTask }) {
 /* ----------------------------- table elements ----------------------------- */
 
 /* ------------------------------ change month ------------------------------ */
+// changes the visible month 
 function ChangeMonth() {
 
-
-
+    // set visible month 
     function changeMonth(year, month) {
         const newMonth = new Date(year, month, 1);
         setViewMonth(newMonth);
@@ -76,6 +85,7 @@ function ChangeMonth() {
         <>
         {/* // previous month */}
         <button className="form-item" onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()-1)}}>Previous Month</button>
+
         {/* // next month  */}
         <button className="form-item" onClick={()=>{changeMonth(viewMonth.getFullYear(), viewMonth.getMonth()+1)}}>Next Month</button>
         
@@ -100,13 +110,15 @@ function ChangeMonth() {
 
 /* ----------------------- creates a row from an array ---------------------- */
 // displays the date in each cell
+// each row is 1 week
     function ArrayToRow({ array }) {
         return (
             <tr>
                 {array.map((value, index) => {
                     return (
-                    value!=="" ? 
 
+                    // display date if cell not empty 
+                    value!=="" ?
                     <td key={value.getDate()} 
                     className={`calendar-date ${value.getTime()===newTask.deadline.getTime() ? "current" : ""}`} 
                     onClick={()=>selectDate(value)}>
@@ -123,7 +135,7 @@ function ChangeMonth() {
 
     /* -------------------- create table from array of arrays ------------------- */
     // each element in the array must be an array itself 
-
+    // each element represents 1 week 
 
     function ArrayToTable({ array }) {
         return (

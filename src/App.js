@@ -1,5 +1,5 @@
 
-import './generated-styles/styles.css';
+import './styles/styles.css';
 import React, { useState } from 'react'
 import Form from './Form/Form';
 import DisplayTasks from './List/DisplayTasks';

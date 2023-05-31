@@ -127,4 +127,11 @@ button:hover {
 .calendar-date.current {
   background-color: #5161a6;
   color: white;
+}
+
+/* --------------------------------- e hower -------------------------------- */
+.e-hower {
+  width: 20vw;
+  height: 20vw;
+  background-color: black;
 }/*# sourceMappingURL=styles.css.map */

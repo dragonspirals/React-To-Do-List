@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Form from './Form/Form';
 import DisplayTasks from './List/DisplayTasks';
 import DisplayCompleted from './List/DisplayCompleted';
+import DisplayEHower from './List/DisplayEHower';
 
 function App() {
 
@@ -58,6 +59,8 @@ function App() {
 
         <br></br>
         <DisplayCompleted taskList={taskList} />
+
+        <DisplayEHower taskList={taskList}/>
       </main>
       
 

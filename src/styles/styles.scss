@@ -128,6 +128,10 @@ circle {
   .task-name {
     width:50%;
   }
+
+  .task-e-hower {
+    width:15%;
+  }
   
   .task-priority {
     width:10%;
@@ -176,10 +180,18 @@ circle {
   .e-hower-div {
     width:20vw;
     height: 20vw;
-    background-image: url("../images/asana-eisenhower.webp");
+    background-image: url("../images/e-hower.png");
     background-size: cover;
+    padding:0%;
   }
   
+
+  .e-hower-plot {
+    margin:0px;
+    padding:0px;  
+  }
+
+
   
   
   

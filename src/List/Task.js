@@ -17,6 +17,10 @@ export default function Task({ task, editTask, taskList }) {
                 <p>{task.name}</p>
             </td>
 
+            <td className="task-e-hower">
+                {(task.hasEHower) && <p>({task.eHower[0]},{task.eHower[1]})</p>}
+            </td>
+
             <td className="task-priority">
                 {(task.priority !== "") && <p>{task.priority}</p>}
             </td>

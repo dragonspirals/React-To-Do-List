@@ -10,6 +10,7 @@ export default function DisplayTasks({ taskList, editTask }) {
                 <tr className="task-row">
                     <th className="checkbox-div">Completed</th>
                     <th className="task-name">Task</th>
+                    <th className="task-e-hower">(Urgency, Importance)</th>
                     <th className="task-priority">Priority</th>
                     <th className="task-deadline">Deadline</th>
                 </tr>

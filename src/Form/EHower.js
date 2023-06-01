@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import graph from "../images/asana-eisenhower.webp"
 
 export default function EHower({ newTask, setNewTask }) {
 
@@ -53,6 +52,8 @@ export default function EHower({ newTask, setNewTask }) {
                 <circle cx={eHowerMark[0]} cy={eHowerMark[1]} r="5" stroke="black" stroke-width="3" fill="black" />
             </svg>
         </div>
+        <p>Urgency: {newTask.eHower[0]}%, Importance: {newTask.eHower[1]}%</p>
+        <br />
         </>
     )
 

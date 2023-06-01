@@ -77,7 +77,7 @@ export default function Form({ addTask }) {
 
             <input className="button" type="submit"></input>
 
-            <p>Urgency: {newTask.eHower[0]}%, Importance: {newTask.eHower[1]}%</p>
+            
 
         </form>
     )

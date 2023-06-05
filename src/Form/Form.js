@@ -66,12 +66,12 @@ export default function Form({ addTask }) {
 
 
             {/* deadline */}
-            <button className="form-item" onClick={showDeadline}>{!newTask.hasDeadline ? "Show": "Hide"} Deadline</button>
+            <button className="form-item" onClick={showDeadline}>{!newTask.hasDeadline ? "Set": "Unset"} Deadline</button>
             {newTask.hasDeadline && <Calendar newTask={newTask} setNewTask={setNewTask} />}
 
 
             {/* eisenhower matrix */}
-            <button className="form-item" onClick={showEHower}>{!newTask.hasEHower ? "Show": "Hide"} Eisenhower Matrix</button>
+            <button className="form-item" onClick={showEHower}>{!newTask.hasEHower ? "Set": "Unset"} Eisenhower Matrix</button>
             {newTask.hasEHower && <EHower newTask={newTask} setNewTask={setNewTask} />}
             
 

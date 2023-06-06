@@ -1,7 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function EHower({ newTask, setNewTask }) {
 
+
+    const boxRef = useRef(null);
 
     // eHower is the percentage [urgency%, importance%] 
     const [eHower, setEHower] = useState([50, 50]);
@@ -9,9 +11,18 @@ export default function EHower({ newTask, setNewTask }) {
     // [x,y] of the position of the mark depicting the e-hower matrix values (absolute)
     const [eHowerMark, setEHowerMark] = useState([null, null]);
 
+    useEffect(() => {
+        if (boxRef.current) {
+            const boxBound = boxRef.current.getBoundingClientRect();
+            setEHowerMark([boxBound.width/2 , boxBound.height/2])
+        }
+    }, [])
+
 
     // mouse position relative to the eisenhower box 
     const [mouseInBox, setMouseInBox] = useState([null, null]);
+
+    // default position for the marker (same as 50, 50)
     
 
     // update e-hower matrix to form component 
@@ -24,7 +35,7 @@ export default function EHower({ newTask, setNewTask }) {
         setEHowerMark(mouseInBox);
     }
 
-    const boxRef = useRef(null);
+
 
 
 

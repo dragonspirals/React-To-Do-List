@@ -30,6 +30,7 @@ export default function Form({ addTask }) {
             return;
         }
         addTask(newTask);
+        console.log(localStorage);
         setNewTask(blankTask);
     }
 

@@ -1,6 +1,6 @@
 
 import './styles/styles.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Form from './Form/Form';
 import DisplayTasks from './List/DisplayTasks';
 import DisplayCompleted from './List/DisplayCompleted';
@@ -8,8 +8,25 @@ import DisplayEHower from './List/DisplayEHower';
 
 function App() {
 
-  const [taskList, setTaskList] = useState([]);
+  // const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState(() => {
+    const jsonList = localStorage.getItem("storeTaskList");
+    const initialValue=JSON.parse(jsonList);
+    return initialValue || []
+  });
 
+
+  // const [storage, setStorage] = useState(() => {
+  //   const saved = localStorage.getItem("name");
+  //   const initialValue=JSON.parse(saved);
+  //   return initialValue || "";
+  // });
+
+
+
+  useEffect(() => {
+    localStorage.setItem('storeTaskList', JSON.stringify(taskList));
+  }, [taskList]);
 
 
   /* -------------------------------- set task -------------------------------- */
@@ -32,9 +49,10 @@ function App() {
   }
 
   function resetList() {
-    const newList = [];;
+    const newList = [];
     setTaskList(newList);
   }
+
 
 
   /* ---------------------------- return statement ---------------------------- */

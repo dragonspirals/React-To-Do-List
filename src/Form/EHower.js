@@ -32,12 +32,12 @@ export default function EHower({ newTask, setNewTask }) {
         const boxBound = boxRef.current.getBoundingClientRect();
 
         // mouse position relative to the box element 
-        const boxRelX = e.clientX - boxBound.x;
-        const boxRelY = e.clientY - boxBound.y;
-        setMouseInBox([boxRelX, boxRelY]);
+        const relativePosX = e.clientX - boxBound.x;
+        const relativePosY = e.clientY - boxBound.y;
+        setMouseInBox([relativePosX, relativePosY]);
 
-        const eHowerX = parseInt(100-(100*boxRelX/boxBound.width));
-        const eHowerY = parseInt(100-(100*boxRelY/boxBound.height));
+        const eHowerX = parseInt(100-(100*relativePosX/boxBound.width));
+        const eHowerY = parseInt(100-(100*relativePosY/boxBound.height));
 
         setEHower([eHowerX, eHowerY]);
 
@@ -47,9 +47,9 @@ export default function EHower({ newTask, setNewTask }) {
     return (
         <div className="set-e-hower"> 
             <p>The Eisenhower matrix is a system that prioritises tasks based on Urgency and Importance</p>       
-            <div ref={boxRef} className = "clickable e-hower" onMouseMove={mouseOver} onClick={selectEHower}class="e-hower-div">
+            <div ref={boxRef} className = "clickable e-hower-div" onMouseMove={mouseOver} onClick={selectEHower}>
                 <svg height="100%" width="100%">
-                    <circle cx={eHowerMark[0]} cy={eHowerMark[1]} r="5" stroke="cyan" stroke-width="3" fill="blue" />
+                    <circle cx={eHowerMark[0] || 50} cy={eHowerMark[1] || 50} r="5" stroke="cyan" stroke-width="3" fill="blue" />
                 </svg>
             </div>
             <p>Urgency: <b>{newTask.eHower[0]}%</b>, Importance: <b>{newTask.eHower[1]}%</b></p>

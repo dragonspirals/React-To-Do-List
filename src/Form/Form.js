@@ -58,25 +58,28 @@ export default function Form({ addTask }) {
 
     return (
         <form className="task-form" onSubmit={handleSubmit}>
-
-            <h3 className="form-item">Add New Task</h3>
-            
-            <input className="form-item" placeholder="Task Name" type="text" onChange={e => {setTaskName(e.target.value)}} value={newTask.name} />
-            
-            <Priority newTask={newTask} setNewTask={setNewTask} />
-
-
-            {/* deadline */}
-            <button className="form-item" onClick={showDeadline}>{!newTask.hasDeadline ? "Set": "Unset"} Deadline</button>
-            {newTask.hasDeadline && <Calendar newTask={newTask} setNewTask={setNewTask} />}
+            <div className="form-details" >
+                <h3 className="form-item">Add New Task</h3>
+                
+                <input className="form-item" placeholder="Task Name" type="text" onChange={e => {setTaskName(e.target.value)}} value={newTask.name} />
+                
+                <Priority newTask={newTask} setNewTask={setNewTask} />
 
 
-            {/* eisenhower matrix */}
-            <button className="form-item" onClick={showEHower}>{!newTask.hasEHower ? "Set": "Unset"} Eisenhower Matrix</button>
-            {newTask.hasEHower && <EHower newTask={newTask} setNewTask={setNewTask} />}
-            
+                {/* deadline */}
+                <button className="form-item" onClick={showDeadline}>{!newTask.hasDeadline ? "Set": "Unset"} Deadline</button>
+                <button className="form-item" onClick={showEHower}>{!newTask.hasEHower ? "Set": "Unset"} Eisenhower Matrix</button>
 
-            <input className="button" type="submit"></input>
+                <div className="form-extras">
+                    {newTask.hasDeadline && <Calendar newTask={newTask} setNewTask={setNewTask} />}
+                    {newTask.hasEHower && <EHower newTask={newTask} setNewTask={setNewTask} />}
+                </div>
+                
+
+                
+            </div>
+            <br></br>
+            <input className="button submit-btn" type="submit"></input>
 
             
 

@@ -10,7 +10,15 @@ function App() {
 
   // const [taskList, setTaskList] = useState([]);
   const [taskList, setTaskList] = useState(() => {
+
+    // get taskList if there are tasks stored in localStorage
     const jsonList = localStorage.getItem("storeTaskList");
+
+    // returns empty array if jsonList is []
+    if (jsonList === "[]") {
+      console.log("empty list")
+      return []
+    }
     const initialValue=JSON.parse(jsonList);
     return initialValue || []
   });

@@ -1,32 +1,56 @@
 
-
+import { useState, useEffect, useRef } from "react";
 
 export default function DisplayEHower({ taskList }) {
     
-    function PlotMarks({ list, boxSize }) {
+
+    const boxRef = useRef(null);
+
+    const [boxSize, setBoxSize] = useState([0.3*window.innerWidth, 0.3*window.innerWidth]);
+
+    useEffect(() => {
+        setBoxSize([boxRef.current.clientWidth, boxRef.current.clientHeight])
+    }, [])
+
+
+    function PlotMarks({ taskList }) {
 
 
         // marks will keep a list of the position of the marks
         const marks = [];
 
-        list.forEach(task => {
-            if (task.hasEHower) {
-                const markX = ((100-task.eHower[0])*boxSize)/100;
-                const markY = ((100-task.eHower[1])*boxSize)/100;
+        taskList.forEach(task => {
+            if (task.hasEHower && boxRef.current) {
+                const markX = ((100-task.eHower[0])*boxSize[0])/100;
+                const markY = ((100-task.eHower[1])*boxSize[1])/100;
 
                 marks.push([markX, markY]);
             }
         })
 
-        
-        
+
         
 
-        return (
-            marks.map((value, index) => (
-                <svg display="block" style={{transform: `translateY(-${index*100}%)`}} className="e-hower-plot"  height="100%" width="100%">
-                    <circle cx={value[0]} cy={value[1]} r="2" stroke="black" stroke-width="2" fill="black" />
+
+        function PlotMark({markPos, markIndex}) {
+
+
+            return (
+                <>
+                <svg display="block" style={{transform: `translateY(-${markIndex*100}%)`}} className="e-hower-plot"  height="100%" width="100%">
+                    <circle cx={markPos[0]} cy={markPos[1]} r="2" stroke="black" stroke-width="2" fill="black" />
                 </svg>
+                </>
+            )
+        }
+
+
+
+        return (
+            marks.map((newMark, index) => (
+                <>
+                <PlotMark markPos={newMark} markIndex={index} />
+                </>
             ))
         )
     }
@@ -35,8 +59,8 @@ export default function DisplayEHower({ taskList }) {
 
     return (
         <>      
-        <div className = "clickable e-hower-div" >
-            <PlotMarks list={taskList} boxSize={0.2*window.innerWidth}/>
+        <div ref={boxRef} className = "clickable e-hower-div" >
+            {boxRef && <PlotMarks taskList={taskList} boxSize={0.3*window.innerWidth}/>}
         </div>
         <br />
         </>

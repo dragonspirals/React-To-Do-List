@@ -152,9 +152,11 @@ function ChangeMonth() {
 
     return (
         <div className="calendar-month">
-            <h4>Set Deadline: {newTask.deadline.getDate()}/{newTask.deadline.getMonth()}/{newTask.deadline.getFullYear()}</h4>
-            <ChangeMonth />
-            <ArrayToTable array={monthInWeeks()} />
+            <div className="calendar">
+                <h4>Set Deadline: {newTask.deadline.getDate()}/{newTask.deadline.getMonth()}/{newTask.deadline.getFullYear()}</h4>
+                <ChangeMonth />
+                <ArrayToTable array={monthInWeeks()} />
+            </div>
         </div>
     )
 }

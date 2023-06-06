@@ -2,6 +2,15 @@ import CompleteTask from "./CompleteTask"
 
 // display one task 
 export default function Task({ task, editTask, taskList }) {
+
+
+
+    // I dont know why  but task.deadline gave an error when using getDate, getMonth, or getFullYear methods
+    // setting this taskDeadline seemed to fix it
+    const taskDeadline = task.hasDeadline ? new Date(task.deadline) : null;
+
+
+    
     return (
         <tr className="task-row">
 
@@ -27,7 +36,7 @@ export default function Task({ task, editTask, taskList }) {
 
             <td className="task-deadline">
                 {(task.hasDeadline) 
-                && <p>{task.deadline.getDate()}/{task.deadline.getMonth()+1}/{task.deadline.getFullYear()}</p>}
+                && <p>{taskDeadline.getDate()}/{taskDeadline.getMonth()+1}/{taskDeadline.getFullYear()}</p>}
             </td>
 
 

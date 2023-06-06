@@ -57,6 +57,7 @@ button {
 }
 
 
+
 circle {
   position:absolute;
 }
@@ -113,8 +114,17 @@ circle {
   /* -------------------------------- task form ------------------------------- */
   
   .task-form {
-    background-color: $off-white;
+    background-color: $primary-color;
     padding:2%
+  }
+
+  .form-details {
+    padding:2%;
+    background-color: $off-white;
+  }
+
+  .form-extras {
+    display:flex;
   }
 
   .form-item {
@@ -145,13 +155,32 @@ circle {
     color:grey;
   }
 
+  .set-e-hower {
+    background-color:$secondary-color; 
+    padding:2%;
+    margin:2%;
+    width:50%;
+    text-align: center;
+  }
+
+
+  .submit-btn {
+    background-color: $dark-color;
+    padding:2%;
+  }
+
 
   /* -------------------------------- calendar -------------------------------- */
   
   .calendar-month {
-    padding:3%;
+    padding:2%;
     margin:2%;
     background-color: $secondary-color;
+    width:50%;
+  }
+
+  .calendar {
+    margin:auto;
     width:fit-content;
   }
 
@@ -178,11 +207,12 @@ circle {
   /* --------------------------------- e hower -------------------------------- */
 
   .e-hower-div {
-    width:20vw;
-    height: 20vw;
+    width:30vw; 
+    height:30vw;
     background-image: url("../images/e-hower.png");
-    background-size: cover;
+    background-size: cover;    
     padding:0%;
+    margin:auto;
   }
   
 

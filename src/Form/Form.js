@@ -17,6 +17,7 @@ export default function Form({ addTask }) {
         hasDeadline:false,
         eHower: [null, null],
         hasEHower: false,
+        isCurrent: false
     }
 
     const [newTask, setNewTask] = useState(blankTask);

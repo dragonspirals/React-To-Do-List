@@ -10,9 +10,9 @@ export default function Task({ task, editTask, taskList }) {
     const taskDeadline = task.hasDeadline ? new Date(task.deadline) : null;
 
 
-    
+
     return (
-        <tr className="task-row">
+        <tr className={`task-row ${task.isCurrent && "current"}`}>
 
         {/* //     <td className="checkbox">
         //         <input type="checkbox" value={task.completed} />

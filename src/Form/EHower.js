@@ -60,7 +60,7 @@ export default function EHower({ newTask, setNewTask }) {
             <p>The Eisenhower matrix is a system that prioritises tasks based on Urgency and Importance</p>       
             <div ref={boxRef} className = "clickable e-hower-div" onMouseMove={mouseOver} onClick={selectEHower}>
                 <svg height="100%" width="100%">
-                    <circle cx={eHowerMark[0] || 50} cy={eHowerMark[1] || 50} r="5" stroke="cyan" stroke-width="3" fill="blue" />
+                    <circle cx={eHowerMark[0] || 50} cy={eHowerMark[1] || 50} r="5" stroke="cyan" strokeWidth="3" fill="blue" />
                 </svg>
             </div>
             <p>Urgency: <b>{newTask.eHower[0]}%</b>, Importance: <b>{newTask.eHower[1]}%</b></p>

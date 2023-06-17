@@ -48,7 +48,7 @@ function App() {
 
 
   const editTask = (index, attribute, value) => {
-    const newTask=taskList[0];
+    const newTask=taskList[index];
     newTask[attribute]=value;
     var newList = [...taskList];
     newList.splice(index, 1, newTask);
@@ -86,7 +86,7 @@ function App() {
         <br></br>
         <DisplayCompleted taskList={taskList} />
 
-        <DisplayEHower taskList={taskList}/>
+        <DisplayEHower taskList={taskList} editTask={editTask}/>
       </main>
       
 

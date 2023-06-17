@@ -72,6 +72,10 @@ circle {
   cursor: pointer;
 }
 
+.current {
+  background-color: $secondary-color;
+}
+
 /* ------------------------------------ - ----------------------------------- */
 
 .App {

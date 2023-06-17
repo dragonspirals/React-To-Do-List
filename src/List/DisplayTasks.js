@@ -19,7 +19,7 @@ export default function DisplayTasks({ taskList, editTask }) {
                 {taskList.map(task => (
 
                     // conditional rendering if the task is not completed
-                    (!task.completed) && <Task key={task.id} task={task} editTask={editTask} taskList={taskList}/>
+                    (!task.completed) && <Task key={"task" + task.id} task={task} editTask={editTask} taskList={taskList}/>
                 ))}
             </tbody>
         </table>

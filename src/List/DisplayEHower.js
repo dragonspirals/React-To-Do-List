@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function DisplayEHower({ taskList }) {
+export default function DisplayEHower({ taskList, editTask }) {
 
     const boxRef = useRef(null);
 
@@ -10,12 +10,44 @@ export default function DisplayEHower({ taskList }) {
         setBoxSize([boxRef.current.clientWidth, boxRef.current.clientHeight])
     }, [])
 
+    const [currentTask, setCurrentTask] = useState();
+
+
+    const eHowerList = taskList.filter(task => task.hasEHower)
+
+
+    function checkHover(e) {
+
+
+
+        if (boxRef.current) {
+            const boxBound = boxRef.current.getBoundingClientRect();  
+            
+            taskList.forEach((task, index) => {
+
+                const markX = ((100-task.eHower[0])*boxSize[0])/100;
+                const markY = ((100-task.eHower[1])*boxSize[1])/100;
+
+
+                if ((Math.abs(boxBound.x + markX - e.clientX) < 5) && (Math.abs(markY + boxBound.y - e.clientY) < 5)) {
+                    setCurrentTask(task.name);
+                    editTask(index, "isCurrent", true );
+                } else {
+                    editTask(index, "isCurrent", false );
+                }
+            });
+        }
+        
+    }
+
+
 
     function PlotMark({ task, taskIndex, boxSize }) {
         
         const markX = ((100-task.eHower[0])*boxSize[0])/100;
         const markY = ((100-task.eHower[1])*boxSize[1])/100;
 
+        
 
         return (
             <svg display="block" style={{transform: `translateY(-${taskIndex*100}%)`}} className="e-hower-plot"  height="100%" width="100%">
@@ -27,10 +59,14 @@ export default function DisplayEHower({ taskList }) {
 
 
     return (
-        <div ref={boxRef} className = "clickable e-hower-div" >
-            {taskList.map((element, index) => (
+        <>
+        <p>{currentTask}</p>
+        <div onMouseMove={e => {checkHover(e)}} ref={boxRef} className = "clickable e-hower-div" >
+            {eHowerList.map((element, index) => (
                 element.hasEHower && <PlotMark key={element.id + "mark"} task={element} taskIndex={index} boxSize={boxSize}/>
             ))}
         </div>
+        </>
+
     )
 }
